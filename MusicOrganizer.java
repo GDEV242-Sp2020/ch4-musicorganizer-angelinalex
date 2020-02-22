@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Random; 
+import java.util.Collections;
 
 /**
  * A class to hold details of audio tracks.
@@ -170,4 +172,58 @@ public class MusicOrganizer
             addTrack(track);
         }
     }
+    
+    public void shuffle() // shuffle  method will play random song. SATISFIES 4.43
+    {
+    Random randomNumbers = new Random(); //random number generator 
+    int numberGenerated = randomNumbers.nextInt(tracks.size()); //creates random number 
+    //within constraint of 0 to track.size() 
+    
+     if (indexValid(numberGenerated)) //if index is valid, method will play the random song
+    {
+   
+       Track track = tracks.get(numberGenerated);
+       player.startPlaying(track.getFilename());
+       
+       System.out.println("Now playing:" + track.getArtist() + "by" +
+        track.getTitle());
+          
+  
+    }
+    
 }
+
+   public void shuffleOnce() //satisfies 4.45
+   {
+   ArrayList<Track> newTracks = tracks; //create new array list of tracks called newTracks; 
+   
+   Collections.shuffle(newTracks); //shuffles newTracks 
+   
+   for (int i= 0; i <= newTracks.size(); i++) //starts i at 0, limits i to size of newTracks size,
+   //increments until that limit
+   {
+      Track track = newTracks.get(i); // gets the index of newTracks
+      
+      System.out.println("Playing : " + track.getTitle() +" by " + track.getTitle()); 
+      
+      player.playSample(track.getFilename()); //plays sample
+      
+     
+   }
+   // playing ends when exception occurs do not know how to stop exception :( 
+   
+   
+  
+       
+       
+   
+}
+    
+   }
+    
+    
+   
+    
+    
+    
+
